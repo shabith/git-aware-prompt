@@ -3,9 +3,9 @@ find_git_branch() {
   local branch
   if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
     if [[ "$branch" == "HEAD" ]]; then
-      branch='detached*'
+      branch=' [detached*]'
     fi
-    git_branch="($branch)"
+    git_branch=" [$branch]"
   else
     git_branch=""
   fi
@@ -19,6 +19,7 @@ find_git_dirty() {
     git_dirty=''
   fi
 }
+
 
 PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 
